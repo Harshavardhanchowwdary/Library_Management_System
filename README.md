@@ -1,143 +1,173 @@
-# 📚 Library Management System
+# Library Management System
 
-A secure and scalable RESTful backend application for managing library operations, including user authentication, book inventory, member management, and book borrowing workflows.
+## Project Overview
 
-Built with **Node.js**, **Express.js**, and **MongoDB**, the application follows clean architecture principles, implements role-based access control, and exposes well-structured REST APIs for seamless integration with frontend applications.
+The Library Management System is a RESTful backend application built to simplify library operations such as managing books, members, and borrowing records. It provides a secure authentication system, role-based authorization, and a structured API for handling everyday library activities.
 
----
+The application supports two types of users:
 
-## 🚀 Project Overview
+* **Librarian**
 
-Managing a library involves much more than storing book records. Librarians need an efficient way to organize books, monitor inventory, manage members, and track borrowing activities.
+  * Manage books
+  * View and manage members
+  * Update inventory
+  * Remove books
 
-This project provides a complete backend solution for those requirements. It offers secure authentication, role-based authorization, inventory management, borrowing history, and validation to ensure data integrity throughout the application.
+* **Member**
 
-The system supports two user roles:
+  * Register an account
+  * Login securely
+  * Browse available books
+  * Borrow books
+  * Return books
+  * View borrowed books
 
-### 👨‍💼 Librarian
-
-* Manage books
-* View and manage members
-* Update inventory
-* Remove books from the system
-
-### 👤 Member
-
-* Register an account
-* Log in securely
-* Browse available books
-* Borrow books
-* Return borrowed books
-* View currently borrowed books
+The project is designed following REST API principles with a clean folder structure, centralized error handling, request validation, and MongoDB integration.
 
 ---
 
-# ✨ Features
+# Features
 
-* Secure User Registration & Login
+### Authentication
+
+* User Registration
+* User Login
 * JWT Authentication
+* Password Hashing using bcrypt
+* Protected Routes
 * Role-Based Authorization
-* Password Hashing with bcrypt
-* Book Inventory Management
-* Member Management
-* Borrow & Return Books
+
+### Book Management
+
+* Add New Books
+* View All Books
+* View Book Details
+* Update Book Information
+* Delete Books
+* Track Available Quantity
+
+### Member Management
+
+* View Registered Members
+* Delete Member Accounts
+
+### Borrow Management
+
+* Borrow Books
+* Return Books
+* View Borrowed Books
+* Prevent Duplicate Borrow Requests
+* Prevent Borrowing Unavailable Books
+
+### Validation & Error Handling
+
 * Input Validation
+* Email Validation
+* Password Validation
+* Required Field Validation
 * Centralized Error Handling
-* RESTful API Design
-* Environment Configuration
-* MongoDB Integration
+* Consistent API Responses
 
 ---
 
-# 🏗️ System Architecture
+# Technology Stack
+
+## Backend
+
+* Node.js
+* Express.js
+
+## Database
+
+* MongoDB
+* Mongoose
+
+## Authentication
+
+* JSON Web Token (JWT)
+* bcrypt
+
+## Validation
+
+* express-validator
+
+## Development Tools
+
+* Git
+* GitHub
+* Postman
+* VS Code
+* Nodemon
+* dotenv
+* CORS
+
+---
+
+# System Architecture
 
 ```text
 Client
-   │
-   ▼
+
+↓
+
 Routes
-   │
-   ▼
+
+↓
+
 Authentication Middleware
-   │
-   ▼
+
+↓
+
 Authorization Middleware
-   │
-   ▼
-Request Validation
-   │
-   ▼
+
+↓
+
+Validation
+
+↓
+
 Controller
-   │
-   ▼
-Database (MongoDB)
-   │
-   ▼
+
+↓
+
+MongoDB
+
+↓
+
 Response
 ```
 
 ---
 
-# 🛠️ Tech Stack
-
-### Backend
-
-* Node.js
-* Express.js
-
-### Database
-
-* MongoDB
-* Mongoose
-
-### Authentication
-
-* JSON Web Token (JWT)
-* bcrypt
-
-### Validation
-
-* express-validator
-
-### Development Tools
-
-* Postman
-* Git
-* GitHub
-* VS Code
-* Nodemon
-
----
-
-# 📁 Project Structure
+# Project Structure
 
 ```text
-library-management-system
+library-management-system/
 │
-├── config
+├── config/
 │   └── db.js
 │
-├── controllers
+├── controllers/
 │   ├── authController.js
 │   ├── bookController.js
 │   └── memberController.js
 │
-├── middleware
+├── middleware/
 │   ├── authMiddleware.js
 │   ├── roleMiddleware.js
 │   └── errorMiddleware.js
 │
-├── models
+├── models/
 │   ├── User.js
 │   ├── Book.js
 │   └── Borrow.js
 │
-├── routes
+├── routes/
 │   ├── authRoutes.js
 │   ├── bookRoutes.js
 │   └── memberRoutes.js
 │
-├── validators
+├── validators/
 │   └── validationRules.js
 │
 ├── .env
@@ -148,27 +178,27 @@ library-management-system
 
 ---
 
-# ⚙️ Installation
+# Installation
 
-### Clone the Repository
+## Clone the Repository
 
 ```bash
-git clone <repository-url>
+git clone https:/Harshavardhanchowwdary/github.com//library-management-system.git
 ```
 
-### Navigate to the Project
+## Move into the Project Directory
 
 ```bash
 cd library-management-system
 ```
 
-### Install Dependencies
+## Install Dependencies
 
 ```bash
 npm install
 ```
 
-### Configure Environment Variables
+## Configure Environment Variables
 
 Create a `.env` file in the project root.
 
@@ -178,19 +208,15 @@ PORT=5000
 DATABASE_URL=
 
 JWT_SECRET=
-
-JWT_EXPIRES_IN=1d
-
-NODE_ENV=development
 ```
 
-### Start Development Server
+## Run the Development Server
 
 ```bash
 npm run dev
 ```
 
-### Production
+## Run in Production
 
 ```bash
 npm start
@@ -198,30 +224,35 @@ npm start
 
 ---
 
-# 💾 Database Setup
+# Environment Variables
+
+| Variable       | Description               |
+| -------------- | ------------------------- |
+| PORT           | Application Port          |
+| DATABASE_URL   | MongoDB Connection String |
+| JWT_SECRET     | Secret Key for JWT        |
+
+---
+
+# Database Setup
 
 1. Create a MongoDB Atlas Cluster.
 2. Create a database user.
 3. Allow network access.
 4. Copy the MongoDB connection string.
-5. Add the connection string to your `.env` file.
-
-Example:
-
-```env
-DATABASE_URL=mongodb+srv://username:password@cluster.mongodb.net/library
-```
+5. Add the connection string to the `.env` file.
+6. Start the server.
 
 ---
 
-# 🔐 Authentication Flow
+# Authentication Flow
 
 ```text
-User Registration
+Register User
 
 ↓
 
-Validate Request
+Validate Input
 
 ↓
 
@@ -229,11 +260,11 @@ Hash Password
 
 ↓
 
-Store User
+Save User
 
 ↓
 
-User Login
+Login
 
 ↓
 
@@ -241,49 +272,35 @@ Verify Credentials
 
 ↓
 
-Generate JWT Token
+Generate JWT
 
 ↓
 
-Access Protected APIs
-
-↓
-
-Logout
+Access Protected Routes
 ```
 
 ---
 
-# 👥 User Roles
-
-| Role      | Permissions                            |
-| --------- | -------------------------------------- |
-| Librarian | Manage Books, Manage Members           |
-| Member    | View Books, Borrow Books, Return Books |
-
----
-
-# 📚 API Endpoints
+# API Endpoints
 
 ## Authentication
 
-| Method | Endpoint           | Description           |
-| ------ | ------------------ | --------------------- |
-| POST   | /api/auth/register | Register a new member |
-| POST   | /api/auth/login    | Login                 |
-| GET    | /api/auth/profile  | Get logged-in user    |
+| Method | Endpoint           | Description        |
+| ------ | ------------------ | ------------------ |
+| POST   | /api/auth/register | Register User      |
+| POST   | /api/auth/login    | Login User         |
 
 ---
 
 ## Books
 
-| Method | Endpoint       | Access    |
-| ------ | -------------- | --------- |
-| GET    | /api/books     | All Users |
-| GET    | /api/books/:id | All Users |
-| POST   | /api/books     | Librarian |
-| PUT    | /api/books/:id | Librarian |
-| DELETE | /api/books/:id | Librarian |
+| Method | Endpoint       | Access              |
+| ------ | -------------- | ------------------- |
+| GET    | /api/books     | Authenticated Users |
+| GET    | /api/books/:id | Authenticated Users |
+| POST   | /api/books     | Librarian           |
+| PUT    | /api/books/:id | Librarian           |
+| DELETE | /api/books/:id | Librarian           |
 
 ---
 
@@ -297,7 +314,7 @@ Logout
 
 ---
 
-## Borrow
+## Borrow Management
 
 | Method | Endpoint              | Access |
 | ------ | --------------------- | ------ |
@@ -306,15 +323,15 @@ Logout
 
 ---
 
-# 📦 API Response Format
+# API Response Format
 
 ### Success Response
 
 ```json
 {
-  "success": true,
-  "message": "Request completed successfully",
-  "data": {}
+    "success": true,
+    "message": "Request completed successfully",
+    "data": {}
 }
 ```
 
@@ -322,16 +339,16 @@ Logout
 
 ```json
 {
-  "success": false,
-  "message": "Book not found"
+    "success": false,
+    "message": "Book not found"
 }
 ```
 
 ---
 
-# ✅ Validation Rules
+# Validation Rules
 
-* Email must be valid.
+* Email must be in a valid format.
 * Password must contain at least 6 characters.
 * Book quantity cannot be negative.
 * Required fields cannot be empty.
@@ -339,138 +356,185 @@ Logout
 
 ---
 
-# 🔒 Security
+# Error Handling
 
-This project includes several security practices to protect application data and user accounts.
+The application uses  error handling to return consistent responses for validation failures, authentication errors, authorization failures, and unexpected server errors.
 
-* Passwords are hashed using bcrypt.
-* JWT is used for authentication.
-* Protected routes require valid tokens.
-* Role-based authorization restricts sensitive operations.
-* Input validation prevents invalid requests.
-* Environment variables keep sensitive credentials out of the codebase.
+Common HTTP Status Codes:
 
----
-
-# 📊 Database Collections
-
-### Users
-
-* Name
-* Email
-* Password
-* Role
-
-### Books
-
-* Title
-* Author
-* ISBN
-* Category
-* Quantity
-* Available Quantity
-
-### Borrow Records
-
-* Member
-* Book
-* Borrow Date
-* Return Date
-* Status
+| Status Code | Description           |
+| ----------- | --------------------- |
+| 200         | Success               |
+| 201         | Resource Created      |
+| 400         | Bad Request           |
+| 401         | Unauthorized          |
+| 403         | Forbidden             |
+| 404         | Resource Not Found    |
+| 409         | Conflict              |
+| 500         | Internal Server Error |
 
 ---
 
-# 🧪 API Testing
+# Security
 
-The APIs were tested using Postman.
+The application follows standard security practices including:
 
-Tested scenarios include:
+* Password hashing using bcrypt
+* JWT-based authentication
+* Role-based authorization
+* Protected API routes
+* Request validation
+* Environment variable configuration
+* Duplicate borrow prevention
+
+---
+
+# Database Collections
+
+## User
+
+* name
+* email
+* password
+* role
+
+## Book
+
+* title
+* author
+* isbn
+* category
+* quantity
+* availableQuantity
+
+## Borrow
+
+* memberId
+* bookId
+* borrowDate
+* returnDate
+* status
+
+---
+
+# API Testing
+
+The APIs have been tested using Postman.
+
+The following modules were verified:
 
 * User Registration
-* Login
-* Book CRUD Operations
+* User Login
+* Book Management
+* Member Management
 * Borrow Book
 * Return Book
-* Authorization Rules
-* Validation Errors
+* Authentication
+* Authorization
+* Input Validation
 
 ---
 
-# 🚀 Deployment
+# Deployment
 
-## Backend
+## Backend URL
 
-**Live API**
-
-```
+```text
 https://your-backend-url.com
 ```
 
-## Repository
+## GitHub Repository
 
-```
-https://github.com/yourusername/library-management-system
-```
-
----
-
-# 📮 Postman Collection
-
-Export the Postman collection and include it inside the repository.
-
-```
-postman/
-    Library Management System.postman_collection.json
+```text
+https://github.com/Harshavardhanchowwdary/Library_Management_System
 ```
 
 ---
 
-# 📈 Future Improvements
+# Future Improvements
 
 * Refresh Token Authentication
-* Email Verification
+* Search Books
+* Category Filtering
 * Pagination
-* Search & Filtering
-* Book Reservation System
-* Fine Calculation
-* Notifications
+* Email Notifications
+* Fine Management
+* Book Reservation
 * Docker Support
-* Unit Testing
 * Swagger API Documentation
+* Unit Testing
 
 ---
 
-#  Contributing
+# API Demonstration
 
-Contributions are welcome.
-
-1. Fork the repository.
-2. Create a feature branch.
-3. Commit your changes.
-4. Push the branch.
-5. Open a Pull Request.
+The following screenshots demonstrate the complete workflow of the application.
 
 ---
+
+## 1. Register User
+
+Creates a new member account.
+<img width="1558" height="930" alt="Screenshot 2026-06-27 150330" src="https://github.com/user-attachments/assets/6037bb75-8a12-4093-9cf4-96d10adb8560" />
+
+## 2. Login User
+
+Authenticates the user and returns a JWT token.
+<img width="1560" height="937" alt="image" src="https://github.com/user-attachments/assets/ad1787de-e03a-4a70-84d5-58d9d7ef95d5" />
+
+## 3. Logout User
+
+member/librarian logouts from the System
+<img width="1558" height="923" alt="image" src="https://github.com/user-attachments/assets/6de946d1-c5fa-4c64-9edf-82760affe75f" />
+
+
+## 4.  Add Book (Librarian)
+
+Adds a new book to the library inventory.
+<img width="1558" height="922" alt="image" src="https://github.com/user-attachments/assets/48f1dd6b-a46f-47e3-8f5a-d8c8aa7a45e3" />
+
+## 5. Get All Books
+
+Returns the list of available books.
+<img width="1568" height="925" alt="image" src="https://github.com/user-attachments/assets/64b4f920-1978-4866-98a7-a56e427bffa4" />
+
+## 6. Get Book By ID
+
+Retrieves details of a specific book.
+<img width="1571" height="923" alt="image" src="https://github.com/user-attachments/assets/7db9ad5e-0736-47b5-9e93-4226fd030cab" />
+
+## 7. Update Book
+
+Updates an existing book.
+<img width="1558" height="932" alt="image" src="https://github.com/user-attachments/assets/82f9ed3a-e3c0-4d39-b05d-585735b9e854" />
+
+## 8. Delete Book
+
+Removes a book from the inventory.
+<img width="1551" height="937" alt="image" src="https://github.com/user-attachments/assets/33f01ad5-64ea-4be6-98fb-d30607d5d8a9" />
+
+## 9. Borrow Book
+
+Allows a member to borrow a book.
+<img width="1568" height="942" alt="image" src="https://github.com/user-attachments/assets/9190546d-ad2c-408c-8c65-004551b157f3" />
+
+## 10. View Returned Book
+
+Display the books returned by the logged-in member.
+<img width="1562" height="930" alt="image" src="https://github.com/user-attachments/assets/b026971c-e8a9-4a3e-a2af-d5259799c7ce" />
+
+## 11. View Borrowed Books
+
+Displays all books borrowed by the logged-in member.
+<img width="1572" height="943" alt="image" src="https://github.com/user-attachments/assets/02d4ebb6-4c99-415c-a83a-e2c9fef04d6a" />
+
 
 # Author
 
 **Harsha Vardhan**
 
-MERN Stack Developer
+Backend Developer
 
-* GitHub: https://github.com/Harshavardhanchowwdary/Library_Management_System
-* LinkedIn: https://linkedin.com/in/yourprofile
-* Portfolio: https://yourportfolio.com
+GitHub: https://github.com/Harshavardhanchowwdary/
 
-* Project Working ScreenShots :
- Register User : [ http://localhost](http://localhost:5000/api/auth/register)
-<img width="1558" height="930" alt="image" src="https://github.com/user-attachments/assets/1db605ef-70f7-49fb-942e-9bdc3fb0c8b3" />
-
----
-
-
----
-
-##  Acknowledgements
-
-This project was developed to strengthen backend engineering concepts, including authentication, authorization, REST API design, database modeling, and clean project organization. It reflects practical implementation of industry-standard development practices and serves as a foundation for building scalable backend applications.
+LinkedIn: www.linkedin.com/in/channupatiharshavardhan
