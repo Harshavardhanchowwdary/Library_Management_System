@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "server": "nodemon -r ./dns-patch.js server.js"
+    "server": "nodemon server.js"
   },
   "keywords": [],
   "author": "",
