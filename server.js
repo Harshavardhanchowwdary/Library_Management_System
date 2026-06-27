@@ -16,7 +16,10 @@ connectDB();
 app.use(express.json());
 app.use(cookieParser());
 
-
+//Testing the BackendServer
+app.get("/",(req,res) =>{
+    res.json({message: "Server is running perfectly"});
+});
 //Checking basic Route
 app.get("/health", (req, res) => {
     res.status(200).json({ status: "healthy", message: "Server is running perfectly" });
